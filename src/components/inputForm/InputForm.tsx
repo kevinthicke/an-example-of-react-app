@@ -26,9 +26,9 @@ export default class InputForm extends Component <IInputFormProps, {}> {
         const { label } = this.props;
 
         return (
-            <div>
+            <div className='form-group'>
                 <label id='input'>{ label }</label>
-                <input type='text' onChange={this.handleOnChange}/>
+                <input type='text' className='form-control' onChange={this.handleOnChange}/>
             </div>
         );
     }

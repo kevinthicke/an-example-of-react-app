@@ -2,6 +2,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import DepartamentList from '../DepartamentList';
 import { IDepartment } from '../../../models/department';
+import InputForm from '../../inputForm/InputForm';
 
 const departmentsMocked: IDepartment[] = [
     {
@@ -20,8 +21,12 @@ describe('DepartmentList', () => {
             const wrapper = shallow(<DepartamentList departments={departmentsMocked} />);
             expect(wrapper.find('ul')).toBeTruthy()
         }),
+        test('Fist <ul> child must be an <InputForm /> component', () => {
+            const wrapper = shallow(<DepartamentList departments={departmentsMocked} />);
+            expect(wrapper.find('ul').childAt(0).type()).toBe(InputForm);
+        }),
         // Este test no funciona porque estoy testeando el DOM virtual en vez de el DOM?
-        /*  test('First <ul> child must be a <li>', () => {
+        /*  test(' <ul> children must be <li> tags', () => {
             const wrapper = shallow(<DepartamentList departments={departmentsMocked} />);
             expect(wrapper.find('ul').children()).('li');
         }), */
@@ -35,7 +40,7 @@ describe('DepartmentList', () => {
             const spyFn= jest.fn();
             //Deberíamos hacer un bucle aquí ?
             const wrapper = shallow(<DepartamentList departments={departmentsMocked} loadDepartmentInfo={spyFn} />);
-            wrapper.find('li').at(1).simulate('click');
+            wrapper.find('li').at(0).simulate('click');
 
             expect(spyFn).toBeCalledWith(departmentsMocked[0]); 
         })

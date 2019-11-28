@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { IDepartment } from '../../models/department';
 import './DepartmentList.css';
+import InputForm from '../inputForm/InputForm';
 
 interface IListProps {
     departments: IDepartment[],
@@ -37,19 +38,17 @@ export default class DepartamentList extends Component<IListProps, IListState> {
         const { departmentActive } = this.state;
 
         return (
-            <div>
-                <ul className='list-group'>
-                    <li className='list-group-item list-group-item-primary'>Departaments</li>
-                    {
-                        departments.map(department => (
-                            <li 
-                            key={department.id}
-                            className={ (departmentActive === department) ? 'list-group-item active' : 'list-group-item' } 
-                            onClick={() => this.setDepartmentActive(department)}>{ department.name }</li>
-                        ))
-                    }    
-                </ul>                
-            </div>
+            <ul className='list-group'>
+                <InputForm label='Departments'></InputForm>
+                {
+                    departments.map(department => (
+                        <li 
+                        key={department.id}
+                        className={ (departmentActive === department) ? 'list-group-item active' : 'list-group-item' } 
+                        onClick={() => this.setDepartmentActive(department)}>{ department.name }</li>
+                    ))
+                }    
+            </ul>
         );
     }
 }

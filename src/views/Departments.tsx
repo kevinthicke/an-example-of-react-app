@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { IDepartment } from '../models/department';
-import DepartamentList from '../components/list/DepartamentList';
+import DepartamentList from '../components/departmentList/DepartamentList';
 
 interface IDepartmentsState {
     departments: IDepartment[]
