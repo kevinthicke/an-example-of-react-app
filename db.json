@@ -1,0 +1,66 @@
+{
+  "departments": [
+      {
+          "id": 1,
+          "name": "Economía y contabilidad"
+      },
+      {
+          "id": 2,
+          "name": "Servicio técnico"
+      },
+      {
+          "id": 3,
+          "name": "Arquitectura de software"
+      },
+      {
+          "id": 4,
+          "name": "Desarrollo web"
+      },
+      {
+          "id": 5,
+          "name": "Diseño web"
+      },
+      {
+          "id": 6,
+          "name": "Marketing y publicidad"
+      },
+      {
+          "id": 7,
+          "name": "Recursos humanos"
+      }
+  ],
+  "employees": [
+      {
+          "id": 1,
+          "name": "Jack",
+          "surname": "Shepard",
+          "birthday": "06/02/1973",
+          "email": "jackshepard@lost.amd",
+          "tasks": [
+              {
+                  "id": 1,
+                  "title": "Registros",
+                  "description": "Llevar los registros financieros de la empresa",
+                  "completed": false
+              },
+              {
+                  "id": 2,
+                  "title": "Libros contables",
+                  "description": "Establecer parámetros para los libros contables. Realizar el balance de los libros contables. Aprovechar los programas y sistemas capaces de simplificar su labor",
+                  "completed": true
+              },
+              {
+                  "id": 3,
+                  "title": "Mantener actualizado el libro mayor",
+                  "description": "Revisar y registrar los ingresos y gastos diarios. Hacer el balance en las columnas de activos y pasivos del libro contable."
+              }
+          ]
+      }
+  ],
+  "departments_employees": [
+      {
+          "id_department": 1,
+          "id_employee": 1
+      }
+  ]
+}

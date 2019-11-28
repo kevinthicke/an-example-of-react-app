@@ -1,0 +1,9 @@
+
+li {
+    transition: all 200ms ease-in-out;
+    cursor: default;
+}
+
+li:hover {
+    background: #f4c1bd;
+}
