@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 interface IInputFormProps {
     label?: string,
+    placeholder?: string,
     onChange?: (value: string) => void
 }
 
@@ -23,12 +24,12 @@ export default class InputForm extends Component <IInputFormProps, {}> {
 
     render() {
 
-        const { label } = this.props;
+        const { label, placeholder } = this.props;
 
         return (
             <div className='form-group'>
                 <label id='input'>{ label }</label>
-                <input type='text' className='form-control' onChange={this.handleOnChange}/>
+                <input type='text' className='form-control' onChange={this.handleOnChange} placeholder={placeholder}/>
             </div>
         );
     }

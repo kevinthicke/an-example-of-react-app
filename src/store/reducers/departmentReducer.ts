@@ -33,7 +33,7 @@ const initialState: DepartmentState = {
             name: "Recursos humanos"
         },
     ],
-    departmentActive: {
+    activeDepartment: {
         id: 1,
         name: "Economía y contabilidad"
     },
@@ -44,7 +44,7 @@ const initialState: DepartmentState = {
 export default (state = initialState, action: DepartmentActionType): DepartmentState => {
     switch (action.type) { 
          case SET_DEPARTMENT_ACTIVE:
-            return { ...state, departmentActive: action.payload }; 
+            return { ...state, activeDepartment: action.payload }; 
         default: 
             return state;
     }

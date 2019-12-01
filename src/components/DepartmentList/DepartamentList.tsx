@@ -1,62 +1,39 @@
-import React, { Dispatch } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import { DepartmentModel } from '../../models/department';
-import { setActiveDepartmentAction } from '../../store/actions/departmentAction';
-import DepartmentActionType from '../../store/actions/index';
-import { AppState } from '../../store/states/index';
 import InputForm from '../inputForm/InputForm';
 import DepartmentListElement from './DepartmentListElement';
 
-
 interface IDepartmentListProps {
     departments: DepartmentModel[],
-    departmentActive: DepartmentModel,
-    setActiveDepartment: (department: DepartmentModel) => void;
+    activeDepartment: DepartmentModel,
+    onChangeInputForm: (departmentName: string) => void;
+    selectDepartment: (department: DepartmentModel) => void;
 }
 
+const DepartmentList: React.SFC<IDepartmentListProps> = props => {
 
-class DepartmentList extends React.Component <IDepartmentListProps, {}> {
-
-    constructor(props: IDepartmentListProps) {
-        super(props);
-
-        this.state = { }
-
-        this.handleSelectDepartment = this.handleSelectDepartment.bind(this);
-    } 
+    const { 
+        departments, activeDepartment,  
+        onChangeInputForm, selectDepartment 
+    } = props;
     
-    handleSelectDepartment(department: DepartmentModel): void {
-        this.props.setActiveDepartment(department);
-    }
-    
-    render(): JSX.Element {
-
-        const { departments, departmentActive } = this.props;
-
-        return (
-            <ul className='list-group'>
-                <InputForm label='Departments' />
-                {
-                    departments.map(department => (
-                        <DepartmentListElement
-                        key={department.id}
-                        department={department} 
-                        departmentActiveId={departmentActive.id}
-                        selectMe={this.handleSelectDepartment}/>
-                    ))
-                }    
-           </ul>
-        );
-    }
+    return (
+        <ul className='list-group'>
+            <InputForm
+                label='Departments'
+                placeholder='Search for department'
+                onChange={(e) => onChangeInputForm(e)} />
+            {
+                departments.map(department => (
+                    <DepartmentListElement
+                    key={department.id}
+                    department={department}
+                    departmentActiveId={activeDepartment.id}
+                    selectMe={() => selectDepartment(department)} />
+                ))
+            }
+        </ul>
+    );
 }
 
-const mapStateToProps = ({ department }: AppState) => ({ 
-    departments: department.departaments,
-    departmentActive: department.departmentActive
-});
-
-const mapDispatchToProps = (dispatch: Dispatch<DepartmentActionType>) => ({
-    setActiveDepartment: (department: DepartmentModel) => dispatch(setActiveDepartmentAction(department))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(DepartmentList);
+export default DepartmentList;

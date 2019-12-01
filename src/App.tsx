@@ -13,7 +13,7 @@ const App: React.FC = () => {
     <Provider store={store}>
       <Router>
         <NavBar></NavBar>
-        <div className='container pt-1'>
+        <div className='container pt-5'>
           <Switch>
             <Route path='/' component={Home} exact />
             <Route path='/departments' component={Departments} />

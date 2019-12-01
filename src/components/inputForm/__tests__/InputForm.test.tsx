@@ -8,6 +8,10 @@ describe('InputForm', () => {
             const wrapper = shallow(<InputForm />);
             expect(wrapper.find('input')).toBeTruthy();
         }),
+        test('Should render a props.placeholder in placeholder attribute', () => {
+            const wrapper = shallow(<InputForm placeholder='placeholder' />);
+            expect(wrapper.find('input').props().placeholder).toBe('placeholder');
+        }),
         test('Should render an label tag', () => {
             const wrapper = shallow(<InputForm />);
             expect(wrapper.find('label')).toBeTruthy();
