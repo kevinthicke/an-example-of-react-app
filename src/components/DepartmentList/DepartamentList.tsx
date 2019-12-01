@@ -1,54 +1,62 @@
-import React, { Component } from 'react';
-import { IDepartment } from '../../models/department';
-import './DepartmentList.css';
+import React, { Dispatch } from 'react';
+import { connect } from 'react-redux';
+import { DepartmentModel } from '../../models/department';
+import { setActiveDepartmentAction } from '../../store/actions/departmentAction';
+import DepartmentActionType from '../../store/actions/index';
+import { AppState } from '../../store/states/index';
 import InputForm from '../inputForm/InputForm';
+import DepartmentListElement from './DepartmentListElement';
 
-interface IListProps {
-    departments: IDepartment[],
-    loadDepartmentInfo?: (department: IDepartment) => void;
+
+interface IDepartmentListProps {
+    departments: DepartmentModel[],
+    departmentActive: DepartmentModel,
+    setActiveDepartment: (department: DepartmentModel) => void;
 }
 
-interface IListState {
-   departmentActive?: IDepartment
-}
 
-export default class DepartamentList extends Component<IListProps, IListState> {
-    
-    constructor(props: IListProps) {
+class DepartmentList extends React.Component <IDepartmentListProps, {}> {
+
+    constructor(props: IDepartmentListProps) {
         super(props);
 
-        this.state = { 
-            departmentActive: undefined
-        };
+        this.state = { }
 
+        this.handleSelectDepartment = this.handleSelectDepartment.bind(this);
+    } 
+    
+    handleSelectDepartment(department: DepartmentModel): void {
+        this.props.setActiveDepartment(department);
     }
+    
+    render(): JSX.Element {
 
-    setDepartmentActive(department: IDepartment): void {
-        this.setState({ departmentActive: department });
-
-        if (this.props.loadDepartmentInfo) {
-            this.props.loadDepartmentInfo(department);
-        }
-
-    }
-
-    render() {
-
-        const { departments } = this.props;
-        const { departmentActive } = this.state;
+        const { departments, departmentActive } = this.props;
 
         return (
             <ul className='list-group'>
-                <InputForm label='Departments'></InputForm>
+                <InputForm label='Departments' />
                 {
                     departments.map(department => (
-                        <li 
+                        <DepartmentListElement
                         key={department.id}
-                        className={ (departmentActive === department) ? 'list-group-item active' : 'list-group-item' } 
-                        onClick={() => this.setDepartmentActive(department)}>{ department.name }</li>
+                        department={department} 
+                        departmentActiveId={departmentActive.id}
+                        selectMe={this.handleSelectDepartment}/>
                     ))
                 }    
-            </ul>
+           </ul>
         );
     }
 }
+
+const mapStateToProps = ({ department }: AppState) => ({ 
+    departments: department.departaments,
+    departmentActive: department.departmentActive
+});
+
+const mapDispatchToProps = (dispatch: Dispatch<DepartmentActionType>) => ({
+    setActiveDepartment: (department: DepartmentModel) => dispatch(setActiveDepartmentAction(department))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DepartmentList);

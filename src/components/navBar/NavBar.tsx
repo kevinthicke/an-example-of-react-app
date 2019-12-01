@@ -1,7 +1,7 @@
-import React, { Component, MouseEvent } from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { INavBarItem } from '../../models/navBarItem';
 import './NavBar.css';
-import { Link } from 'react-router-dom';
 
 interface INavBarState {
     navBarItems: INavBarItem[],

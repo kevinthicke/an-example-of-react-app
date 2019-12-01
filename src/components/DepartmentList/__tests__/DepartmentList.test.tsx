@@ -1,10 +1,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import DepartamentList from '../DepartamentList';
-import { IDepartment } from '../../../models/department';
+import { DepartmentModel } from '../../../models/department';
 import InputForm from '../../inputForm/InputForm';
 
-const departmentsMocked: IDepartment[] = [
+const departmentsMocked: DepartmentModel[] = [
     {
         id: 1,
         name: "Test Department - 1"

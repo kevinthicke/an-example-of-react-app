@@ -1,9 +1,12 @@
-
-li {
+.list-group-item {
     transition: all 200ms ease-in-out;
     cursor: default;
 }
 
-li:hover {
+.list-group-item:hover{
     background: #f4c1bd;
+}
+
+.active:hover{
+    background: #d9230e;
 }

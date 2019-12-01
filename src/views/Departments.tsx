@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { IDepartment } from '../models/department';
+import { DepartmentModel } from '../models/department';
 import DepartamentList from '../components/departmentList/DepartamentList';
 
 interface IDepartmentsState {
-    departments: IDepartment[]
+    departments: DepartmentModel[]
 }
 
 export default class Departments extends Component<{ }, IDepartmentsState>{
@@ -16,27 +16,17 @@ export default class Departments extends Component<{ }, IDepartmentsState>{
         };
     }   
 
-    componentDidMount(): void {
-        fetch('http://localhost:3001/departments')
-        .then(response => response.json())
-        .then(data => {
-            this.setState({ departments: data });
-        });
-    }
 
-    handleLoadDepartmentInfo(department: IDepartment): void {
+    handleLoadDepartmentInfo(department: DepartmentModel): void {
         console.log(department);
-    }
+    }   
     
     render() {
         return (
             <div className='row'>
                 <div className='col-3'>
-                    <DepartamentList 
-                    loadDepartmentInfo={this.handleLoadDepartmentInfo}
-                    departments={this.state.departments}>
-                    </DepartamentList>
-                </div>
+                    <DepartamentList></DepartamentList>
+                </div> 
             </div>
         );
     }
